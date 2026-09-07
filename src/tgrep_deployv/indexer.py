@@ -245,12 +245,16 @@ def expected_checksum(checksums_text, asset):
 
 
 def verify_checksum(archive, checksums_text, asset):
-    """Raise SystemExit when the archive does not match the published sha256."""
+    """Raise SystemExit when the archive does not match the published sha256.
+
+    Upstream only lists the tar.gz assets in checksums.txt (the Windows zips are not in
+    it), so an asset absent from the list is installed with a warning; only a listed asset
+    whose digest differs is refused. Returns the verified digest, or None when unlisted.
+    """
     expected = expected_checksum(checksums_text, asset)
     if not expected:
-        raise SystemExit(
-            "%s does not list %s; refusing to install an unverified binary" % (TGREP_CHECKSUMS_NAME, asset)
-        )
+        _logger.warning("%s does not list %s; installing it unverified", TGREP_CHECKSUMS_NAME, asset)
+        return None
     digest = hashlib.sha256()
     with open(archive, "rb") as handler:
         for chunk in iter(lambda: handler.read(1024 * 1024), b""):

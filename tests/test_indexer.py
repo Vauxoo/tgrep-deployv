@@ -277,9 +277,14 @@ def test_verify_checksum_accepts_and_rejects(tmp_path):
     with pytest.raises(SystemExit) as error:
         indexer.verify_checksum(str(archive), "0" * 64 + "  %s\n" % archive.name, archive.name)
     assert "sha256 mismatch" in str(error.value)
-    with pytest.raises(SystemExit) as error:
-        indexer.verify_checksum(str(archive), "%s  other.tar.gz\n" % good, archive.name)
-    assert "does not list" in str(error.value)
+
+
+def test_verify_checksum_warns_on_unlisted_asset(tmp_path, caplog):
+    """Upstream publishes no checksum for the Windows zips: warn, do not refuse."""
+    archive = _tarball(tmp_path)
+    caplog.set_level(logging.WARNING)
+    assert indexer.verify_checksum(str(archive), "abcd  other.tar.gz\n", archive.name) is None
+    assert "does not list %s" % archive.name in _messages(caplog)
 
 
 def test_extract_binary_from_tarball(tmp_path):
