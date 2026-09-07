@@ -1,0 +1,14 @@
+*.egg-info/
+*.py[cod]
+.cache/
+.coverage
+.coverage.*
+.eggs/
+.tgrep/
+.tox/
+ChangeLog
+__pycache__/
+build/
+dist/
+dist_wo_pbr/
+htmlcov/
