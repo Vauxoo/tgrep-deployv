@@ -6,7 +6,7 @@
 [![version](https://img.shields.io/pypi/v/tgrep-deployv.svg)](https://pypi.org/project/tgrep-deployv)
 [![pypi-downloads-monthly](https://img.shields.io/pypi/dm/tgrep-deployv.svg?style=flat)](https://pypi.python.org/pypi/tgrep-deployv)
 [![supported-versions](https://img.shields.io/pypi/pyversions/tgrep-deployv.svg)](https://pypi.org/project/tgrep-deployv)
-[![commits-since](https://img.shields.io/github/commits-since/Vauxoo/tgrep-deployv/v0.1.0.svg)](https://github.com/Vauxoo/tgrep-deployv/compare/v0.1.0...main)
+[![commits-since](https://img.shields.io/github/commits-since/Vauxoo/tgrep-deployv/v0.1.1.svg)](https://github.com/Vauxoo/tgrep-deployv/compare/v0.1.1...main)
 
 [//]: # (end-badges)
 
